@@ -7,10 +7,10 @@ import "./App.css";
 function App() {
   useEffect(() => {
     async function testGet() {
-      await fetch("/", {
+      await fetch("http://localhost:5000/test", {
         method: "GET",
         headers: { "Content-type": "application/json" },
-      }).then((response) => console.log("response"));
+      }).then((response) => console.log(response));
     }
     testGet();
   }, []);
