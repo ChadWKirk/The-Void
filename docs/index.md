@@ -25,3 +25,9 @@ background is like an 8-bit star field warp effect. probably use a video
 messages have an alert sound
 
 messages disappear in 15 seconds by fading away
+
+## Build
+
+I used Vite for this instead of Create-React-App. This is my first time using Vite.
+
+I used this guide: [https://www.makeuseof.com/set-up-react-app-with-vite/](https://www.makeuseof.com/set-up-react-app-with-vite/)
