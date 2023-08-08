@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./normalize.css";
 import "./App.css";
 
 function App() {
+  useEffect(() => {
+    async function testGet() {
+      await fetch("/", {
+        method: "GET",
+        headers: { "Content-type": "application/json" },
+      }).then((response) => console.log("response"));
+    }
+    testGet();
+  }, []);
   return (
     <div className="container">
       <h1 id="the-void">The Void</h1>
