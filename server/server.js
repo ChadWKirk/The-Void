@@ -11,6 +11,6 @@ app.get("/", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
 });
 
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   console.log("testing 1 2 3");
 });
