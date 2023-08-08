@@ -12,7 +12,7 @@ Repo URL - [https://github.com/ChadWKirk/The-Void](https://github.com/ChadWKirk/
 
 when user goes to site, they get prompted to enter their name
 
-when they hit submit, if that name already exists it asks for a different name, if it doesn't already exist then a user gets created in the DB with that name.
+when they hit submit, if that name already exists it asks for a different name, if it doesn't already exist then a user gets created in the DB with that name and a random token key then goes to the-void.com/token/name.
 
 when they exit, that user gets removed from the DB
 
