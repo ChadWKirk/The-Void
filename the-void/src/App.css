@@ -1,42 +1,64 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  --BGColor: #414346;
+  --InputBGColor: #d9d9d9;
+  --InputTextColor: #000000;
+  --BtnBGColor: #213183;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  background-color: var(--BGColor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#the-void {
+  font-size: 4.5rem;
+  line-height: 4.5rem;
+  font-weight: 700;
+}
+
+#enter-name {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 300;
+}
+
+input {
+  background-color: var(--InputBGColor);
+}
+
+input:focus {
+  outline: none;
+}
+
+.nameInput {
+  max-width: 400px;
+  width: 90%;
+  height: 96px;
+  border-radius: 8px;
+  font-size: 3rem;
+  font-weight: 700;
   text-align: center;
+  color: var(--InputTextColor);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.aBtn {
+  background-color: var(--BtnBGColor);
+  cursor: pointer;
+  max-width: 400px;
+  width: 90%;
+  height: 96px;
+  border-radius: 8px;
+  display: block;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 96px;
+  text-align: center;
+  margin-top: 1.25rem;
 }
