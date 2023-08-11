@@ -30,4 +30,9 @@ app.get("/", (req, res) => {
 
 app.get("/api/test", (req, res) => {
   console.log("testing 1 2 3");
+  // var sql = "INSERT INTO Users (name) VALUES ('Chad')";
+  // db.query(sql, function (err, result) {
+  //   if (err) console.log(err);
+  //   console.log("1 record inserted");
+  // });
 });
