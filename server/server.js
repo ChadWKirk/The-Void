@@ -54,3 +54,13 @@ app.post("/api/addUser", (req, res) => {
     res.send(result);
   });
 });
+
+app.post("/api/removeUser", (req, res) => {
+  console.log(req.body);
+  var sql = `DELETE FROM Users WHERE id=${req.body.id}`;
+  db.query(sql, function (err, result) {
+    if (err) console.log(err);
+    console.log(`1 record deleted with id of ${req.body.id}`);
+    res.send(result);
+  });
+});
