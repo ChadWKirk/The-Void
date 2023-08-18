@@ -48,7 +48,7 @@ input:focus {
   color: var(--InputTextColor);
 }
 
-.aBtn {
+.joinBtn {
   background-color: var(--BtnBGColor);
   cursor: pointer;
   max-width: 400px;

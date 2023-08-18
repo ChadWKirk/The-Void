@@ -2,6 +2,16 @@ import { React, useEffect, useState } from "react";
 
 const HomePage = () => {
   const [name, setName] = useState();
+
+  async function enterChatServer() {
+    await fetch("/api/addUser", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ name: `${name}` }),
+    }).then((response) => {
+      console.log(response);
+    });
+  }
   return (
     <div className="container">
       <h1 id="the-void">The Void</h1>
@@ -12,9 +22,9 @@ const HomePage = () => {
         maxLength="16"
         onChange={(e) => setName(e.target.value)}
       ></input>
-      <a className="aBtn" href={`/token/${name}`}>
+      <button className="joinBtn" onClick={() => enterChatServer()}>
         Enter Chat Server
-      </a>
+      </button>
     </div>
   );
 };

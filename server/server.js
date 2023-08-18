@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const port = process.env.PORT || 5000;
 require("dotenv").config({ path: "./config.env" });
 const cors = require("cors");
@@ -22,6 +23,12 @@ db.connect((err) => {
 
 app.use(cors());
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get("/", (req, res) => {
@@ -35,4 +42,13 @@ app.get("/api/test", (req, res) => {
   //   if (err) console.log(err);
   //   console.log("1 record inserted");
   // });
+});
+
+app.post("/api/addUser", (req, res) => {
+  console.log(req.body);
+  var sql = `INSERT INTO Users (name) VALUES ('${req.body.name}')`;
+  db.query(sql, function (err, result) {
+    if (err) console.log(err);
+    console.log(`1 record inserted with name of ${req.body.name}`);
+  });
 });
