@@ -12,7 +12,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
-        <Route path="/token/name" element={<ChatServerPage />}></Route>
+        <Route path="/:token/:name" element={<ChatServerPage />}></Route>
       </Routes>
     </div>
   );
