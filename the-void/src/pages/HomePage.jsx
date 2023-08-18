@@ -20,3 +20,9 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+//NOTES
+
+//click button
+//button uses fetch to hit server telling it to add a user with a random token and the name that the user has typed in
+//upon success, redicrect to /token/name (ex: /123456/Chad)
