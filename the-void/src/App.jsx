@@ -10,9 +10,14 @@ import viteLogo from "/vite.svg";
 import "./normalize.css";
 import "./App.css";
 import HomePage from "./pages/HomePage";
+import ChatServerPage from "./pages/ChatServerPage";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<HomePage />}></Route>)
+  createRoutesFromElements(
+    <Route path="/" element={<HomePage />}>
+      <Route path="/token/name" element={<ChatServerPage />}></Route>
+    </Route>
+  )
 );
 
 function App({ routes }) {

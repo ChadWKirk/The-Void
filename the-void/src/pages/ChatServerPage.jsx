@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 
-const HomePage = () => {
+const ChatServerPage = () => {
   return (
     <div className="container">
       <h1 id="the-void">The Void</h1>
@@ -13,4 +13,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ChatServerPage;
