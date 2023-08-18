@@ -8,9 +8,16 @@ const HomePage = () => {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ name: `${name}` }),
-    }).then((response) => {
-      console.log(response);
-    });
+    }).then((response) =>
+      response
+        .json()
+        .then((resJSON) => JSON.stringify(resJSON))
+        .then((stringJSON) => JSON.parse(stringJSON))
+        .then((parsedJSON) => {
+          console.log(parsedJSON);
+          window.location.href = `/${parsedJSON.insertId}/${name}`;
+        })
+    );
   }
   return (
     <div className="container">

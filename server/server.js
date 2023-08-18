@@ -50,5 +50,7 @@ app.post("/api/addUser", (req, res) => {
   db.query(sql, function (err, result) {
     if (err) console.log(err);
     console.log(`1 record inserted with name of ${req.body.name}`);
+    console.log(result);
+    res.send(result);
   });
 });
