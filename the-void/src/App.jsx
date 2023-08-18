@@ -1,30 +1,20 @@
 import { useState, useEffect } from "react";
-import {
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { Route, Routes, Router } from "react-router-dom";
+//css
 import "./normalize.css";
 import "./App.css";
+//pages
 import HomePage from "./pages/HomePage";
 import ChatServerPage from "./pages/ChatServerPage";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<HomePage />}>
-      <Route path="/token/name" element={<ChatServerPage />}></Route>
-    </Route>
-  )
-);
-
-function App({ routes }) {
+function App() {
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/token/name" element={<ChatServerPage />}></Route>
+      </Routes>
+    </div>
   );
 }
 
