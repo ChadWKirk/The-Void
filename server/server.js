@@ -35,13 +35,14 @@ app.get("/", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
 });
 
-app.get("/api/test", (req, res) => {
-  console.log("testing 1 2 3");
-  // var sql = "INSERT INTO Users (name) VALUES ('Chad')";
-  // db.query(sql, function (err, result) {
-  //   if (err) console.log(err);
-  //   console.log("1 record inserted");
-  // });
+app.post("/api/checkUser", (req, res) => {
+  console.log(req.body.id);
+  var sql = `SELECT name FROM Users WHERE id=${req.body.id}`;
+  db.query(sql, function (err, result) {
+    if (err) console.log(err);
+    console.log(result);
+    res.send(result);
+  });
 });
 
 app.post("/api/addUser", (req, res) => {
