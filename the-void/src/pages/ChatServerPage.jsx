@@ -51,7 +51,8 @@ const ChatServerPage = () => {
       setMessageReceived(data.message);
     });
   }, [socket]);
-  function sendMessage() {
+  function sendMessage(e) {
+    e.preventDefault();
     socket.emit("send_message", { message: message });
     //clear input field when message gets submitted
     document.getElementById("msgInput").value = "";
@@ -69,8 +70,15 @@ const ChatServerPage = () => {
   }
   return (
     <div className="container">
+      <div id="space">
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+        <div class="stars"></div>
+      </div>
       <div>{messageReceived}</div>
-      <form onSubmit={sendMessage}>
+      <form onSubmit={(e) => sendMessage(e)}>
         <input
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Message"

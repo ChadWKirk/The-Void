@@ -46,6 +46,8 @@ input:focus {
   font-weight: 700;
   text-align: center;
   color: var(--InputTextColor);
+  position: relative;
+  z-index: 100;
 }
 
 .joinBtn {
@@ -61,4 +63,11 @@ input:focus {
   line-height: 96px;
   text-align: center;
   margin-top: 1.25rem;
+  position: relative;
+  z-index: 100;
+}
+
+button {
+  position: relative;
+  z-index: 100;
 }
