@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, Router } from "react-router-dom";
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:5000");
 //css
 import "./normalize.css";
 import "./App.css";

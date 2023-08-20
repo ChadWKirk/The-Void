@@ -1,5 +1,8 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+//socket.io
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:5000");
 
 const ChatServerPage = () => {
   let { id } = useParams();
@@ -38,6 +41,20 @@ const ChatServerPage = () => {
       checkUserInUrl();
     }
   }, []);
+  //create message from input field
+  const [message, setMessage] = useState();
+  //when socket gets a "receive_message" from express, show the message to everyone
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      alert(data.message);
+    });
+  }, [socket]);
+  function sendMessage() {
+    socket.emit("send_message", { message: message });
+    //clear input field when message gets submitted
+    document.getElementById("msgInput").value = "";
+  }
+  //when user exits server, delete the user from database
   async function exitChatServer() {
     await fetch("/api/removeUser", {
       method: "POST",
@@ -50,8 +67,17 @@ const ChatServerPage = () => {
   }
   return (
     <div className="container">
-      <input placeholder="Message" className="nameInput" maxLength="16"></input>
-      <button>Submit Message</button>
+      <form onSubmit={sendMessage}>
+        <input
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Message"
+          className="nameInput"
+          maxLength="16"
+          id="msgInput"
+        ></input>
+        <button type="submit">Submit Message</button>
+      </form>
+
       <button onClick={() => exitChatServer()}>Exit</button>
     </div>
   );

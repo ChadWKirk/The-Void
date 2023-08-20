@@ -1,5 +1,11 @@
 const express = require("express");
 const app = express();
+const http = require("http");
+const { Server } = require("socket.io");
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: { origin: "http://localhost:5173", methods: ["GET", "POST"] },
+});
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 5000;
 require("dotenv").config({ path: "./config.env" });
@@ -29,18 +35,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(port, () => console.log(`Listening on port ${port}`));
+
+io.on("connection", (socket) => {
+  console.log(`user connected: ${socket.id}`);
+
+  socket.on("send_message", (data) => {
+    socket.broadcast.emit("receive_message", data);
+  });
+});
 
 app.get("/", (req, res) => {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
 });
 
 app.post("/api/checkUser", (req, res) => {
-  console.log(req.body.id);
   var sql = `SELECT name FROM Users WHERE id=${req.body.id}`;
   db.query(sql, function (err, result) {
     if (err) console.log(err);
-    console.log(result);
     res.send(result);
   });
 });
@@ -51,7 +63,6 @@ app.post("/api/addUser", (req, res) => {
   db.query(sql, function (err, result) {
     if (err) console.log(err);
     console.log(`1 record inserted with name of ${req.body.name}`);
-    console.log(result);
     res.send(result);
   });
 });
