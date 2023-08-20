@@ -5,6 +5,11 @@ const ChatServerPage = () => {
   let { id } = useParams();
   let { name } = useParams();
   useEffect(() => {
+    //if id in url is not a number
+    if (isNaN(id)) {
+      window.location.href = `/nouserfound`;
+    }
+
     async function checkUserInUrl() {
       await fetch("/api/checkUser", {
         method: "POST",
@@ -17,6 +22,7 @@ const ChatServerPage = () => {
           .then((stringJSON) => JSON.parse(stringJSON))
           .then((parsedJSON) => {
             console.log(parsedJSON);
+            //if name and id don't match to an existing user in database
             if (parsedJSON.length == 0) {
               window.location.href = `/nouserfound`;
             } else {
@@ -24,12 +30,13 @@ const ChatServerPage = () => {
                 window.location.href = `/nouserfound`;
               }
             }
-
-            // window.location.href = `/${parsedJSON.insertId}/${name}`;
           })
       );
     }
-    checkUserInUrl();
+    //if id in url is a number
+    if (!isNaN(id)) {
+      checkUserInUrl();
+    }
   }, []);
   async function exitChatServer() {
     await fetch("/api/removeUser", {
