@@ -3,7 +3,9 @@ import { React, useEffect, useState } from "react";
 const HomePage = () => {
   const [name, setName] = useState();
 
-  async function enterChatServer() {
+  async function enterChatServer(e) {
+    e.preventDefault();
+
     await fetch("/api/addUser", {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -30,15 +32,17 @@ const HomePage = () => {
       </div>
       <h1 id="the-void">The Void</h1>
       <h2 id="enter-name">Please Enter Your Name</h2>
-      <input
-        placeholder="Name"
-        className="nameInput"
-        maxLength="16"
-        onChange={(e) => setName(e.target.value)}
-      ></input>
-      <button className="joinBtn" onClick={() => enterChatServer()}>
-        Enter Chat Server
-      </button>
+      <form onSubmit={(e) => enterChatServer(e)}>
+        <input
+          placeholder="Name"
+          className="nameInput"
+          maxLength="16"
+          onChange={(e) => setName(e.target.value)}
+        ></input>
+        <button className="joinBtn" type="submit">
+          Enter Chat Server
+        </button>
+      </form>
     </div>
   );
 };
