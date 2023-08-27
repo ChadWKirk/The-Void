@@ -44,11 +44,11 @@ const ChatServerPage = () => {
   //create message from input field
   const [message, setMessage] = useState();
   //put message that is received in a div element
-  const [messageReceived, setMessageReceived] = useState(" ");
+  const [messageReceived, setMessageReceived] = useState();
   //when socket gets a "receive_message" from express, show the message to everyone
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
+      setMessageReceived(<div id="messageReceived">{data.message}</div>);
     });
   }, [socket]);
   function sendMessage(e) {
@@ -77,7 +77,7 @@ const ChatServerPage = () => {
         <div class="stars"></div>
         <div class="stars"></div>
       </div>
-      <div>{messageReceived}</div>
+      {messageReceived}
       <form onSubmit={(e) => sendMessage(e)}>
         <input
           onChange={(e) => setMessage(e.target.value)}
