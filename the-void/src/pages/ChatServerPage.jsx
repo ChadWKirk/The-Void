@@ -24,7 +24,6 @@ const ChatServerPage = () => {
           .then((resJSON) => JSON.stringify(resJSON))
           .then((stringJSON) => JSON.parse(stringJSON))
           .then((parsedJSON) => {
-            console.log(parsedJSON);
             //if name and id don't match to an existing user in database
             if (parsedJSON.length == 0) {
               window.location.href = `/nouserfound`;
@@ -44,16 +43,46 @@ const ChatServerPage = () => {
   //create message from input field
   const [message, setMessage] = useState();
   //put message that is received in a div element
-  const [messageReceived, setMessageReceived] = useState();
-  //when socket gets a "receive_message" from express, show the message to everyone
+  const [messageReceived, setMessageReceived] = useState(<div></div>);
+  //a que of messages that are already sent that are waiting to be shown
+  const [messageQue, setMessageQue] = useState([]);
+  //when socket gets a "receive_message" from express, show the message to everyone by pushing it to messageQue
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageReceived(<div id="messageReceived">{data.message}</div>);
+      setMessageQue((messageQue) => [
+        ...messageQue,
+        <div id="messageReceived">
+          {data.name}: {data.message}
+        </div>,
+      ]);
     });
   }, [socket]);
+  //set up what message to show
+  //the message that is displayed in the DOM
+  const [showMsg, setShowMsg] = useState();
+  useEffect(() => {
+    console.log(messageQue.length, " length");
+    console.log(messageQue, " que");
+    //when messageQue is changed, show the first entry in messageQue array
+    setShowMsg(messageQue[0]);
+    //if messageQue.length > 0, every x seconds chop off first entry and show new first entry
+    if (messageQue.length > 0) {
+      setTimeout(() => {
+        let messageQueCopy = messageQue;
+        //cut off first 2 because for some reason it is adding the same thing twice when a user sends a message
+        messageQueCopy.shift();
+        messageQueCopy.shift();
+        setMessageQue(messageQueCopy);
+        setShowMsg(messageQue[0]);
+        console.log(messageQue.length, " length");
+        console.log(messageQue, " que");
+        //need to make sure timer time is the same as css animation time for fade in/out
+      }, 2000);
+    }
+  }, [messageQue]);
   function sendMessage(e) {
     e.preventDefault();
-    socket.emit("send_message", { message: message });
+    socket.emit("send_message", { name: name, message: message });
     //clear input field when message gets submitted
     document.getElementById("msgInput").value = "";
   }
@@ -71,19 +100,19 @@ const ChatServerPage = () => {
   return (
     <div className="container">
       <div id="space">
-        <div class="stars"></div>
-        <div class="stars"></div>
-        <div class="stars"></div>
-        <div class="stars"></div>
-        <div class="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
       </div>
-      {messageReceived}
+      {showMsg}
       <form onSubmit={(e) => sendMessage(e)}>
         <input
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Message"
           className="nameInput"
-          maxLength="16"
+          maxLength="20"
           id="msgInput"
         ></input>
         <button type="submit">Submit Message</button>
