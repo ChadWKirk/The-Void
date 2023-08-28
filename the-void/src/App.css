@@ -7,6 +7,12 @@
   font-family: "Montserrat", sans-serif;
   font-family: "Roboto", sans-serif;
 }
+/* font for title on home page */
+@font-face {
+  font-family: "Spacefont";
+  src: local("Spacefont"),
+    url("../space-font/Space-lmX5.ttf") format("truetype");
+}
 
 .container {
   background-color: var(--BGColor);
@@ -15,12 +21,14 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  position: relative;
 }
 
 #the-void {
   font-size: 4.5rem;
   line-height: 4.5rem;
-  font-weight: 700;
+  font-weight: 300;
+  font-family: "Spacefont";
 }
 
 #enter-name {
@@ -37,6 +45,13 @@ input:focus {
   outline: none;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .nameInput {
   max-width: 400px;
   width: 90%;
@@ -50,8 +65,9 @@ input:focus {
   z-index: 100;
 }
 
-.joinBtn {
+.btn-1 {
   background-color: var(--BtnBGColor);
+  color: #fff;
   cursor: pointer;
   max-width: 400px;
   width: 90%;
@@ -65,6 +81,32 @@ input:focus {
   margin-top: 1.25rem;
   position: relative;
   z-index: 100;
+}
+
+.exitBtn {
+  background-color: #2c314a;
+  color: #fff;
+  cursor: pointer;
+  max-width: 367px;
+  width: 90%;
+  height: 96px;
+  border-radius: 8px;
+  display: block;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 96px;
+  text-align: center;
+  margin-top: 1.25rem;
+  position: relative;
+  z-index: 100;
+}
+
+#chatForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  position: absolute;
+  bottom: 1rem;
 }
 
 button {
@@ -85,6 +127,9 @@ button {
 }
 
 #messageReceived {
-  animation: fadeText ease 2s;
+  animation: fadeText ease 4s;
   opacity: 0;
+  font-size: 5rem;
+  position: relative;
+  z-index: 200;
 }

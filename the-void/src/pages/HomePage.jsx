@@ -39,7 +39,7 @@ const HomePage = () => {
           maxLength="16"
           onChange={(e) => setName(e.target.value)}
         ></input>
-        <button className="joinBtn" type="submit">
+        <button className="btn-1" type="submit">
           Enter Chat Server
         </button>
       </form>

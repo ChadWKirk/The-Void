@@ -46,8 +46,20 @@ const ChatServerPage = () => {
   const [messageReceived, setMessageReceived] = useState(<div></div>);
   //a que of messages that are already sent that are waiting to be shown
   const [messageQue, setMessageQue] = useState([]);
+  //happens when form is submitted
+  function sendMessage(e) {
+    console.log("sendMessage activated");
+    e.preventDefault();
+    socket.emit("send_message", { name: name, message: message });
+    //clear input field when message gets submitted
+    document.getElementById("msgInput").value = "";
+    //flip socket state just to get useEffect to fire
+    setSocketState(!socketState);
+  }
+  const [socketState, setSocketState] = useState(true);
   //when socket gets a "receive_message" from express, show the message to everyone by pushing it to messageQue
   useEffect(() => {
+    console.log("sending msg");
     socket.on("receive_message", (data) => {
       setMessageQue((messageQue) => [
         ...messageQue,
@@ -56,7 +68,7 @@ const ChatServerPage = () => {
         </div>,
       ]);
     });
-  }, [socket]);
+  }, [socketState]);
   //set up what message to show
   //the message that is displayed in the DOM
   const [showMsg, setShowMsg] = useState();
@@ -80,12 +92,6 @@ const ChatServerPage = () => {
       }, 2000);
     }
   }, [messageQue]);
-  function sendMessage(e) {
-    e.preventDefault();
-    socket.emit("send_message", { name: name, message: message });
-    //clear input field when message gets submitted
-    document.getElementById("msgInput").value = "";
-  }
   //when user exits server, delete the user from database
   async function exitChatServer() {
     await fetch("/api/removeUser", {
@@ -106,8 +112,9 @@ const ChatServerPage = () => {
         <div className="stars"></div>
         <div className="stars"></div>
       </div>
-      {showMsg}
-      <form onSubmit={(e) => sendMessage(e)}>
+
+      <form id="chatForm" onSubmit={(e) => sendMessage(e)}>
+        {showMsg}
         <input
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Message"
@@ -115,10 +122,17 @@ const ChatServerPage = () => {
           maxLength="20"
           id="msgInput"
         ></input>
-        <button type="submit">Submit Message</button>
+        <button type="submit" className="btn-1">
+          Submit Message
+        </button>
+        <button
+          type="button"
+          className="exitBtn"
+          onClick={() => exitChatServer()}
+        >
+          Exit
+        </button>
       </form>
-
-      <button onClick={() => exitChatServer()}>Exit</button>
     </div>
   );
 };

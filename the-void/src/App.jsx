@@ -4,6 +4,8 @@ import { Route, Routes, Router } from "react-router-dom";
 import "./normalize.css";
 import "./App.css";
 import "./stars.css";
+//fonts
+import "../space-font/Space-lmX5.ttf";
 //pages
 import HomePage from "./pages/HomePage";
 import ChatServerPage from "./pages/ChatServerPage";
