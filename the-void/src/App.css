@@ -14,14 +14,23 @@
     url("../space-font/Space-lmX5.ttf") format("truetype");
 }
 
+html {
+  background-color: #414346;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .container {
-  background-color: var(--BGColor);
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  position: relative;
+  min-height: 100%;
+  /* height: 100vh; */
+  /* position: relative; */
 }
 
 #the-void {
@@ -102,8 +111,8 @@ form {
 }
 
 #chatContainer {
-  position: absolute;
-  bottom: 2rem;
+  /* position: absolute;
+  bottom: 2rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
