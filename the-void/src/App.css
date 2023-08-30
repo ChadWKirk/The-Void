@@ -124,12 +124,15 @@ form {
 
 #messageReceived {
   animation: fadeText ease 4s;
+  word-break: break-word;
   opacity: 1;
   font-size: 3rem;
   font-weight: 700;
-  line-height: 3rem;
+  line-height: 4rem;
   position: relative;
   z-index: 200;
+  margin: 0 0.5rem;
+  text-align: center;
 }
 
 #msgInput {

@@ -115,6 +115,17 @@ const ChatServerPage = () => {
       </div>
       <div id="chatContainer">
         {showMsg}
+        {/* <div id="messageReceived">
+          Chad:
+          <p
+            style={{
+              fontWeight: "400",
+              display: "inline",
+            }}
+          >
+            This is a long
+          </p>
+        </div> */}
         <form id="chatForm" onSubmit={(e) => sendMessage(e)}>
           <input
             onChange={(e) => setMessage(e.target.value)}
