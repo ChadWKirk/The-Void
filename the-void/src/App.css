@@ -101,17 +101,13 @@ form {
   z-index: 100;
 }
 
-#chatForm {
+#chatContainer {
+  position: absolute;
+  bottom: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: baseline;
-  position: absolute;
-  bottom: 1rem;
-}
-
-button {
-  position: relative;
-  z-index: 100;
+  align-items: center;
+  gap: 2rem;
 }
 
 @keyframes fadeText {
@@ -128,8 +124,35 @@ button {
 
 #messageReceived {
   animation: fadeText ease 4s;
-  opacity: 0;
-  font-size: 5rem;
+  opacity: 1;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 3rem;
   position: relative;
   z-index: 200;
+}
+
+#msgInput {
+  max-width: 400px;
+  width: 90%;
+  height: 96px;
+  border-radius: 8px;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--InputTextColor);
+  position: relative;
+  z-index: 100;
+}
+
+#chatForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  max-width: 400px;
+}
+
+button {
+  position: relative;
+  z-index: 100;
 }

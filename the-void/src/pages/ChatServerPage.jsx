@@ -64,7 +64,8 @@ const ChatServerPage = () => {
       setMessageQue((messageQue) => [
         ...messageQue,
         <div id="messageReceived">
-          {data.name}: {data.message}
+          {data.name}:{" "}
+          <p style={{ fontWeight: "400", display: "inline" }}>{data.message}</p>
         </div>,
       ]);
     });
@@ -89,7 +90,7 @@ const ChatServerPage = () => {
         console.log(messageQue.length, " length");
         console.log(messageQue, " que");
         //need to make sure timer time is the same as css animation time for fade in/out
-      }, 2000);
+      }, 4000);
     }
   }, [messageQue]);
   //when user exits server, delete the user from database
@@ -112,27 +113,27 @@ const ChatServerPage = () => {
         <div className="stars"></div>
         <div className="stars"></div>
       </div>
-
-      <form id="chatForm" onSubmit={(e) => sendMessage(e)}>
+      <div id="chatContainer">
         {showMsg}
-        <input
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Message"
-          className="nameInput"
-          maxLength="20"
-          id="msgInput"
-        ></input>
-        <button type="submit" className="btn-1">
-          Submit Message
-        </button>
-        <button
-          type="button"
-          className="exitBtn"
-          onClick={() => exitChatServer()}
-        >
-          Exit
-        </button>
-      </form>
+        <form id="chatForm" onSubmit={(e) => sendMessage(e)}>
+          <input
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Message"
+            maxLength="20"
+            id="msgInput"
+          ></input>
+          <button type="submit" className="btn-1">
+            Submit Message
+          </button>
+          <button
+            type="button"
+            className="exitBtn"
+            onClick={() => exitChatServer()}
+          >
+            Exit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
