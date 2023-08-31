@@ -6,3 +6,9 @@ test("should render home page", () => {
   const container = screen.getByTestId("container");
   expect(container).toBeInTheDocument;
 });
+
+// test("input field should reflect key pressed", () => {
+//     render(<HomePage/>);
+//     const nameInput = screen.getByTestId("nameInput");
+
+// })
