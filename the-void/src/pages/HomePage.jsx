@@ -32,8 +32,9 @@ const HomePage = () => {
       </div>
       <h1 id="the-void">The Void</h1>
       <h2 id="enter-name">Please Enter Your Name</h2>
-      <form onSubmit={(e) => enterChatServer(e)}>
+      <form data-testid="homeForm" onSubmit={(e) => enterChatServer(e)}>
         <input
+          data-testid="nameInput"
           placeholder="Name"
           className="nameInput"
           maxLength="16"
