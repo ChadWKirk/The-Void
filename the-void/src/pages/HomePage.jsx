@@ -22,13 +22,13 @@ const HomePage = () => {
     );
   }
   return (
-    <div className="container">
+    <div data-testid="container" className="container">
       <div id="space">
-        <div class="stars"></div>
-        <div class="stars"></div>
-        <div class="stars"></div>
-        <div class="stars"></div>
-        <div class="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
+        <div className="stars"></div>
       </div>
       <h1 id="the-void">The Void</h1>
       <h2 id="enter-name">Please Enter Your Name</h2>
