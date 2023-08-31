@@ -35,3 +35,5 @@ For testing:
 [https://stackoverflow.com/questions/64342544/test-input-search-box-with-react-testing-library](https://stackoverflow.com/questions/64342544/test-input-search-box-with-react-testing-library)
 
 [https://www.npmjs.com/package/jest-fetch-mock#installation-and-setup](https://www.npmjs.com/package/jest-fetch-mock#installation-and-setup)
+
+[https://khemsok97.gumroad.com/l/kyhpsj](https://khemsok97.gumroad.com/l/kyhpsj)

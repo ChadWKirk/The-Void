@@ -17,7 +17,7 @@ const HomePage = () => {
         .then((stringJSON) => JSON.parse(stringJSON))
         .then((parsedJSON) => {
           console.log(parsedJSON);
-          window.location.href = `/${parsedJSON.insertId}/${name}`;
+          window.location.assign(`/${parsedJSON.insertId}/${name}`);
         })
     );
   }

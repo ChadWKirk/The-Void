@@ -4,6 +4,11 @@ import { render, screen, cleanup, getByTestId } from "@testing-library/react";
 import { fireEvent } from "@testing-library/react";
 import HomePage from "../HomePage.jsx";
 
+Object.defineProperty(window, "location", {
+  writable: true,
+  value: { assign: jest.fn() },
+});
+
 // beforeEach(() => {
 //   fetchMock.doMock();
 // });
@@ -14,12 +19,9 @@ test("should render home page", () => {
   expect(container).toBeInTheDocument;
 });
 
-//test for entering chat server page
-//run enterChatServer from homepage > const chatForm = screen.getByTestId("chatForm") > expect(chatForm).toBeInTheDocument;
-
 test("entering ChatServerPage from HomePage", () => {
-  // global.window = { location: { pathname: null } };
-  fetch.mockResponse(JSON.stringify({ mockResponse: "12345" }));
+  global.window = { location: { pathname: "http://127.0.0.1:5173/" } };
+  fetch.mockResponse(JSON.stringify({ insertId: "1" }));
   render(<HomePage />);
   const enterChatServer = jest.fn();
   const homeForm = screen.getByTestId("homeForm");
@@ -31,6 +33,7 @@ test("entering ChatServerPage from HomePage", () => {
   // expect(screen.getByDisplayValue("testName")).toBeInTheDocument;
   fireEvent.submit(homeForm);
   expect(enterChatServer).toBeCalled;
-  // expect(global.window.location.pathname).toContain("testName");
-  expect(homeForm).toBeNull();
+  expect(global.window.location.pathname).toContain("testName");
+  // expect(homeForm).toBeNull();
+  // console.log(global.location);
 });
